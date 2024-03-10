@@ -15,6 +15,8 @@ pub fn new_canvas(width: u32, height: u32) -> RgbImage {
 pub fn meger_image_to_buffer<'a, I, P, S>(
     carrier: &'a mut ImageBuffer<P, Vec<S>>,
     painter: &I,
+    x: u32,
+    y: u32,
 ) -> &'a mut ImageBuffer<P, Vec<S>>
 where
     I: GenericImageView<Pixel = P>,
@@ -22,7 +24,7 @@ where
     S: Primitive + 'static,
 {
     // Copy input image at the correct location in the buffer image.
-    let _ = carrier.copy_from(painter, 0, 0);
+    let _ = carrier.copy_from(painter, x, y);
 
     carrier
 }

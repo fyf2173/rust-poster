@@ -16,6 +16,8 @@ impl IHandler for BackgroundHandler {
             carrier,
             // &bg.resize(carrier.width(), carrier.height(), imageops::Nearest)
             &resize_image(bg, carrier.width(), carrier.height(), imageops::Nearest).into_rgb8(),
+            0,
+            0,
         );
     }
 }
@@ -30,6 +32,8 @@ impl IHandler for BackgroundRemoteHandler {
         meger_image_to_buffer(
             carrier,
             &resize_image(bg, carrier.width(), carrier.height(), imageops::Nearest).into_rgb8(),
+            0,
+            0,
         );
     }
 }

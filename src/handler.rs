@@ -1,11 +1,15 @@
 pub mod background_handler;
 pub mod canvash_handler;
+pub mod imagecircle_handler;
+pub mod line_handler;
 pub mod output_handler;
+pub mod qrcode_handler;
+pub mod rectangle_handler;
 pub mod text_handler;
 
 mod tests {
 
-    use image::Rgb;
+    use image::{Rgb, Rgba};
 
     use super::*;
 
@@ -20,14 +24,23 @@ mod tests {
             background: Box::new(background_handler::BackgroundHandler {
                 path: "./asset/R-C_320.png".to_string(),
             }),
-            elements: vec![Box::new(text_handler::TextHandler {
-                title: "hello world hahah".to_string(),
-                x: 0,
-                y: 0,
-                color: Rgb([0, 0, 0]),
-                fontsize: 16.0,
-                font: include_bytes!("../asset/msyhbd.ttf"),
-            })],
+            elements: vec![
+                Box::new(text_handler::TextHandler {
+                    title: "hello world hahah".to_string(),
+                    x: 0,
+                    y: 0,
+                    color: Rgb([0, 0, 0]),
+                    fontsize: 16.0,
+                    font: include_bytes!("../asset/msyhbd.ttf"),
+                }),
+                Box::new(rectangle_handler::RectangleHandler {
+                    x: 30,
+                    y: 30,
+                    with: 100,
+                    height: 10,
+                    color: Rgba([0, 0, 0, 0]),
+                }),
+            ],
         };
         canvas.run();
     }
