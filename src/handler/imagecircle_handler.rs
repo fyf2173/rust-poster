@@ -1,5 +1,4 @@
 use image::{imageops, DynamicImage, ImageBuffer, Rgb};
-use imageproc::drawing::{draw_filled_circle_mut, draw_filled_ellipse_mut, draw_hollow_circle_mut};
 
 use crate::core::core::{self, image_to_circle, meger_image_to_buffer};
 
