@@ -2,7 +2,7 @@ use image::{imageops, DynamicImage, Rgb, Rgba, RgbaImage};
 
 use crate::core::core::meger_image_to_buffer;
 
-use super::canvash_handler::IHandler;
+use super::canvas_handler::IHandler;
 
 pub struct RectangleHandler {
     pub x: u32,

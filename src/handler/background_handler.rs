@@ -2,7 +2,7 @@ use image::{imageops, ImageBuffer, Rgb};
 
 use crate::core::core::{get_remote_resource, meger_image_to_buffer, resize_image};
 
-use super::canvash_handler::IHandler;
+use super::canvas_handler::IHandler;
 
 pub struct BackgroundHandler {
     pub path: String,

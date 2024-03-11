@@ -2,7 +2,7 @@ use image::{ImageBuffer, Rgb};
 
 use crate::core::core::{load_font, text_to_image};
 
-use super::canvash_handler::IHandler;
+use super::canvas_handler::IHandler;
 
 pub struct TextHandler {
     pub title: String,

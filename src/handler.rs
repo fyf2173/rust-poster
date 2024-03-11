@@ -1,5 +1,5 @@
 pub mod background_handler;
-pub mod canvash_handler;
+pub mod canvas_handler;
 pub mod imagecircle_handler;
 pub mod line_handler;
 pub mod output_handler;
@@ -15,7 +15,7 @@ mod tests {
 
     #[test]
     fn it_run_handler() {
-        let canvas = canvash_handler::CanvasHandler {
+        let canvas = canvas_handler::CanvasHandler {
             x: 300,
             y: 300,
             output: Box::new(output_handler::OutputLocal {
@@ -40,6 +40,27 @@ mod tests {
                     height: 10,
                     color: Rgba([0, 0, 0, 0]),
                 }),
+                Box::new(rectangle_handler::RectangleHandler {
+                    x: 40,
+                    y: 40,
+                    with: 100,
+                    height: 2,
+                    color: Rgba([0, 0, 0, 0]),
+                }),
+                Box::new(line_handler::LineHandler {
+                    x1: 150f32,
+                    y1: 150f32,
+                    x2: 250f32,
+                    y2: 150f32,
+                    color: Rgb([0, 0, 0]),
+                }),
+                Box::new(imagecircle_handler::ImageCircleHandler {
+                    path: String::from("./asset/R-C_320.png"),
+                    x: 100,
+                    y: 100,
+                    width: 50,
+                    height: 50,
+                }),
             ],
         };
         canvas.run();
@@ -47,7 +68,7 @@ mod tests {
 
     #[test]
     fn it_run_remote_handler() {
-        let canvas = canvash_handler::CanvasHandler {
+        let canvas = canvas_handler::CanvasHandler {
             x: 300,
             y: 300,
             output: Box::new(output_handler::OutputLocal{

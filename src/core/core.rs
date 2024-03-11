@@ -1,6 +1,6 @@
 use image::{
     imageops, DynamicImage, GenericImage, GenericImageView, ImageBuffer, Pixel, Primitive, Rgb,
-    RgbImage,
+    RgbImage, Rgba, RgbaImage,
 };
 use imageproc::drawing::draw_text_mut;
 use reqwest::Error;
@@ -75,4 +75,26 @@ pub fn text_to_image<'a>(
 pub fn get_remote_resource(link: &str) -> Result<DynamicImage, Error> {
     let image_vec = reqwest::blocking::get(link)?.bytes()?.to_vec();
     Ok(image::load_from_memory(image_vec.as_slice()).unwrap())
+}
+
+// image_to_circle 圆形图片
+pub fn image_to_circle(img: DynamicImage) -> ImageBuffer<Rgba<u8>, Vec<u8>> {
+    let (width, height) = img.dimensions();
+
+    let mut imgbuf = RgbaImage::new(width, height);
+
+    let radius = width.min(height) / 2;
+    let center = (width / 2, height / 2);
+
+    for (x, y, pixel) in imgbuf.enumerate_pixels_mut() {
+        let dx = center.0 as i32 - x as i32;
+        let dy = center.1 as i32 - y as i32;
+        if (dx * dx + dy * dy) < (radius as i32 * radius as i32) {
+            *pixel = img.get_pixel(x, y);
+        } else {
+            *pixel = image::Rgba([0, 0, 0, 0]);
+        }
+    }
+
+    imgbuf
 }
