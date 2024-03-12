@@ -1,4 +1,4 @@
-use image::{imageops, DynamicImage, Rgb, Rgba, RgbaImage};
+use image::{imageops, DynamicImage, Rgba, RgbaImage};
 
 use crate::core::core::meger_image_to_buffer;
 
@@ -13,15 +13,10 @@ pub struct RectangleHandler {
 }
 
 impl IHandler for RectangleHandler {
-    fn draw(&self, carrier: &mut image::ImageBuffer<Rgb<u8>, Vec<u8>>) {
+    fn draw(&self, carrier: &mut RgbaImage) {
         let mut painter = RgbaImage::new(self.with, self.height);
         imageops::vertical_gradient(&mut painter, &self.color, &self.color);
 
-        meger_image_to_buffer(
-            carrier,
-            &DynamicImage::ImageRgba8(painter).into_rgb8(),
-            self.x,
-            self.y,
-        );
+        meger_image_to_buffer(carrier, &DynamicImage::ImageRgba8(painter), self.x, self.y);
     }
 }

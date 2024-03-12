@@ -1,4 +1,4 @@
-use image::{imageops, DynamicImage, ImageBuffer, Rgb};
+use image::{imageops, DynamicImage, RgbaImage};
 
 use crate::core::core::{self, image_to_circle, meger_image_to_buffer};
 
@@ -13,15 +13,15 @@ pub struct ImageCircleHandler {
 }
 
 impl IHandler for ImageCircleHandler {
-    fn draw(&self, carrier: &mut ImageBuffer<Rgb<u8>, Vec<u8>>) {
+    fn draw(&self, carrier: &mut RgbaImage) {
         let origin_img = image::open(&self.path).unwrap();
         let painter = core::resize_image(origin_img, self.width, self.height, imageops::Nearest);
 
-        let circle_img = image_to_circle(painter);
+        let circle_img = image_to_circle(painter.into());
 
         meger_image_to_buffer(
             carrier,
-            &DynamicImage::ImageRgba8(circle_img).into_rgb8(),
+            &DynamicImage::ImageRgba8(circle_img),
             self.x,
             self.y,
         );

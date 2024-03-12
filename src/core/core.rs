@@ -1,8 +1,12 @@
+use conv::ValueInto;
 use image::{
-    imageops, DynamicImage, GenericImage, GenericImageView, ImageBuffer, Pixel, Primitive, Rgb,
+    imageops, DynamicImage, GenericImage, GenericImageView, ImageBuffer, Pixel, Primitive,
     RgbImage, Rgba, RgbaImage,
 };
-use imageproc::drawing::draw_text_mut;
+use imageproc::{
+    definitions::Clamp,
+    drawing::{draw_text_mut, Canvas},
+};
 use reqwest::Error;
 use rusttype::{Font, Scale};
 
@@ -44,15 +48,19 @@ pub fn load_font(font_data: &[u8]) -> Vec<u8> {
 }
 
 // text_to_image 文字写入图片
-pub fn text_to_image<'a>(
-    carrier: &'a mut ImageBuffer<Rgb<u8>, Vec<u8>>,
+pub fn text_to_image<'a, C>(
+    carrier: &'a mut C,
     title: &'a str,
     x: i32,
     y: i32,
-    color: Rgb<u8>,
+    color: C::Pixel,
     fontsize: f32,
     font: Vec<u8>,
-) -> &'a mut ImageBuffer<Rgb<u8>, Vec<u8>> {
+) -> &'a mut C
+where
+    C: Canvas,
+    <C::Pixel as Pixel>::Subpixel: ValueInto<f32> + Clamp<f32>,
+{
     let font = Font::try_from_vec(font).unwrap();
 
     draw_text_mut(
@@ -78,7 +86,7 @@ pub fn get_remote_resource(link: &str) -> Result<DynamicImage, Error> {
 }
 
 // image_to_circle 圆形图片
-pub fn image_to_circle(img: DynamicImage) -> ImageBuffer<Rgba<u8>, Vec<u8>> {
+pub fn image_to_circle(img: RgbaImage) -> ImageBuffer<Rgba<u8>, Vec<u8>> {
     let (width, height) = img.dimensions();
 
     let mut imgbuf = RgbaImage::new(width, height);
@@ -90,7 +98,7 @@ pub fn image_to_circle(img: DynamicImage) -> ImageBuffer<Rgba<u8>, Vec<u8>> {
         let dx = center.0 as i32 - x as i32;
         let dy = center.1 as i32 - y as i32;
         if (dx * dx + dy * dy) < (radius as i32 * radius as i32) {
-            *pixel = img.get_pixel(x, y);
+            *pixel = *img.get_pixel(x, y);
         } else {
             *pixel = image::Rgba([0, 0, 0, 0]);
         }

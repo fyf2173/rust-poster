@@ -1,7 +1,7 @@
-use image::{ImageBuffer, Rgb};
+use image::RgbaImage;
 
 pub trait IOutput {
-    fn save(&self, carrier: &mut ImageBuffer<Rgb<u8>, Vec<u8>>);
+    fn save(&self, carrier: &mut RgbaImage);
 }
 
 pub struct OutputLocal {
@@ -9,7 +9,7 @@ pub struct OutputLocal {
 }
 
 impl IOutput for OutputLocal {
-    fn save(&self, carrier: &mut ImageBuffer<Rgb<u8>, Vec<u8>>) {
+    fn save(&self, carrier: &mut RgbaImage) {
         carrier.save(&self.path).unwrap();
     }
 }

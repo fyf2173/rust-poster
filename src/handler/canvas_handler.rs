@@ -1,9 +1,9 @@
-use image::{ImageBuffer, Rgb, RgbImage};
+use image::RgbaImage;
 
 use super::output_handler::IOutput;
 
 pub trait IHandler {
-    fn draw(&self, carrier: &mut ImageBuffer<Rgb<u8>, Vec<u8>>);
+    fn draw(&self, carrier: &mut RgbaImage);
 }
 
 pub struct CanvasHandler {
@@ -16,7 +16,7 @@ pub struct CanvasHandler {
 
 impl CanvasHandler {
     pub fn run(&self) {
-        let mut carrier = RgbImage::new(self.x, self.y);
+        let mut carrier = RgbaImage::new(self.x, self.y);
         self.background.as_ref().draw(&mut carrier); // 先画背景图
 
         for elem in self.elements.iter() {

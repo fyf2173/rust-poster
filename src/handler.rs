@@ -9,7 +9,7 @@ pub mod text_handler;
 
 mod tests {
 
-    use image::{Rgb, Rgba};
+    use image::Rgba;
 
     use super::*;
 
@@ -29,7 +29,7 @@ mod tests {
                     title: "hello world hahah".to_string(),
                     x: 0,
                     y: 0,
-                    color: Rgb([0, 0, 0]),
+                    color: Rgba([0, 0, 0, 255]),
                     fontsize: 16.0,
                     font: include_bytes!("../asset/msyhbd.ttf"),
                 }),
@@ -52,14 +52,14 @@ mod tests {
                     y1: 150f32,
                     x2: 250f32,
                     y2: 150f32,
-                    color: Rgb([0, 0, 0]),
+                    color: Rgba([0, 0, 0, 255]),
                 }),
                 Box::new(imagecircle_handler::ImageCircleHandler {
                     path: String::from("./asset/R-C_320.png"),
                     x: 100,
                     y: 100,
-                    width: 50,
-                    height: 50,
+                    width: 100,
+                    height: 100,
                 }),
             ],
         };
@@ -82,7 +82,7 @@ mod tests {
                     title: "hello world".to_string(),
                     x: 0,
                     y: 0,
-                    color: Rgb([0, 0, 0]),
+                    color: Rgba([0, 0, 0, 255]),
                     fontsize: 16.0,
                     font: include_bytes!("../asset/msyhbd.ttf"),
                 }),

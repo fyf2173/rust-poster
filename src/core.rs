@@ -2,7 +2,7 @@ pub mod core;
 
 #[cfg(test)]
 mod tests {
-    use image::{Rgb, RgbImage, RgbaImage};
+    use image::{Rgb, RgbImage, Rgba, RgbaImage};
 
     use super::*;
 
@@ -33,16 +33,16 @@ mod tests {
 
     #[test]
     fn it_text_to_merge_image() {
-        let mut img = RgbImage::new(400, 400);
+        let mut img = RgbaImage::new(400, 400);
         let painter = image::open("asset/R-C_320.png").unwrap();
         // 透明底不能写上字，得非透明底的图片
-        let mut new_img = core::meger_image_to_buffer(&mut img, &painter.into_rgb8(), 0, 0);
+        core::meger_image_to_buffer(&mut img, &painter, 0, 0);
         core::text_to_image(
-            &mut new_img,
+            &mut img,
             "起来，起来，不想上班的人们！！！",
             0,
             0,
-            Rgb([255, 255, 255]),
+            Rgba([255, 255, 255, 255]),
             16.0 * 2.0,
             core::load_font(include_bytes!("../asset/msyhbd.ttf")),
         )
