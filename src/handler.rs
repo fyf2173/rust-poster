@@ -68,6 +68,16 @@ mod tests {
                     height: 50,
                     url: String::from("https://img-crs-test.vchangyi.com/upload/265379470454976/qrcode1709273820.png"),
                 }),
+                Box::new(qrcode_handler::QrcodeHandler{ 
+                    x: 50, 
+                    y: 50, 
+                    witdh: 50, 
+                    height: 50, 
+                    light_color: Rgba([224, 224, 224, 255]),
+                    dark_color: Rgba([0, 0, 128, 255]),
+                    quiet_zone: false,
+                    content: String::from("Hello World") ,
+                }),
             ],
         };
         canvas.run();
