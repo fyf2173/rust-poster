@@ -1,6 +1,4 @@
-use image::{imageops, DynamicImage, Rgba, RgbaImage};
-
-use crate::core::core::meger_image_to_buffer;
+use image::{imageops, Rgba, RgbaImage};
 
 use super::canvas_handler::IHandler;
 
@@ -17,6 +15,8 @@ impl IHandler for RectangleHandler {
         let mut painter = RgbaImage::new(self.with, self.height);
         imageops::vertical_gradient(&mut painter, &self.color, &self.color);
 
-        meger_image_to_buffer(carrier, &DynamicImage::ImageRgba8(painter), self.x, self.y);
+        imageops::overlay(carrier, &painter, self.x as i64, self.y as i64);
+
+        // meger_image_to_buffer(carrier, &DynamicImage::ImageRgba8(painter), self.x, self.y);
     }
 }

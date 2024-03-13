@@ -1,6 +1,6 @@
-use image::{imageops, DynamicImage, RgbaImage};
+use image::{imageops, RgbaImage};
 
-use crate::core::core::{self, get_remote_resource, image_to_circle, meger_image_to_buffer};
+use crate::core::core::{self, get_remote_resource, image_to_circle};
 
 use super::canvas_handler::IHandler;
 
