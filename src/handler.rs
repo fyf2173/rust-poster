@@ -61,6 +61,13 @@ mod tests {
                     width: 100,
                     height: 100,
                 }),
+                Box::new(imagecircle_handler::ImageRemoteCircleHandler {
+                    x: 150,
+                    y: 150,
+                    width: 50,
+                    height: 50,
+                    url: String::from("https://img-crs-test.vchangyi.com/upload/265379470454976/qrcode1709273820.png"),
+                }),
             ],
         };
         canvas.run();
