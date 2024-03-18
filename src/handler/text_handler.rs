@@ -15,7 +15,6 @@ pub struct TextHandler {
 
 impl IHandler for TextHandler {
     fn draw(&self, carrier: &mut RgbaImage) {
-        // println!("{}", "got here text merge");
         text_to_image(
             carrier,
             &self.title,

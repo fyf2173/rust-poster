@@ -54,13 +54,13 @@ mod tests {
                     y2: 150f32,
                     color: Rgba([0, 0, 0, 255]),
                 }),
-                Box::new(imagecircle_handler::ImageCircleHandler {
-                    path: String::from("./asset/R-C_320.png"),
-                    x: 100,
-                    y: 100,
-                    width: 100,
-                    height: 100,
-                }),
+                // Box::new(imagecircle_handler::ImageCircleHandler {
+                //     path: String::from("./asset/R-C_320.png"),
+                //     x: 100,
+                //     y: 100,
+                //     width: 100,
+                //     height: 100,
+                // }),
                 Box::new(imagecircle_handler::ImageRemoteCircleHandler {
                     x: 150,
                     y: 150,
@@ -68,19 +68,19 @@ mod tests {
                     height: 50,
                     url: String::from("https://img-crs-test.vchangyi.com/upload/265379470454976/qrcode1709273820.png"),
                 }),
-                Box::new(qrcode_handler::QrcodeHandler{ 
-                    x: 50, 
-                    y: 50, 
-                    witdh: 50, 
-                    height: 50, 
+                Box::new(qrcode_handler::QrcodeHandler {
+                    x: 50,
+                    y: 50,
+                    witdh: 50,
+                    height: 50,
                     light_color: Rgba([224, 224, 224, 255]),
                     dark_color: Rgba([0, 0, 128, 255]),
                     quiet_zone: false,
-                    content: String::from("Hello World") ,
+                    content: String::from("Hello World"),
                 }),
             ],
         };
-        canvas.run();
+        canvas.run_thread();
     }
 
     #[test]

@@ -1,7 +1,5 @@
-use image::{imageops, DynamicImage, Rgb, Rgba, RgbaImage};
+use image::{imageops, Rgba, RgbaImage};
 use qrcode::QrCode;
-
-use crate::core::core;
 
 use super::canvas_handler::IHandler;
 

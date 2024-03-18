@@ -16,7 +16,5 @@ impl IHandler for RectangleHandler {
         imageops::vertical_gradient(&mut painter, &self.color, &self.color);
 
         imageops::overlay(carrier, &painter, self.x as i64, self.y as i64);
-
-        // meger_image_to_buffer(carrier, &DynamicImage::ImageRgba8(painter), self.x, self.y);
     }
 }
