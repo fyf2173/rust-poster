@@ -1,6 +1,6 @@
 use image::{imageops, RgbaImage};
 
-use crate::core::core::{self, get_remote_resource, image_to_circle};
+use crate::core::{self, get_remote_resource, image_to_circle};
 
 use super::canvas_handler::IHandler;
 

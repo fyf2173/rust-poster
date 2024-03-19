@@ -1,6 +1,6 @@
 use image::{Rgba, RgbaImage};
 
-use crate::core::core::{load_font, text_to_image};
+use crate::core::{load_font, text_to_image};
 
 use super::canvas_handler::IHandler;
 

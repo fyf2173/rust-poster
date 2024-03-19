@@ -1,11 +1,24 @@
-pub mod background_handler;
-pub mod canvas_handler;
-pub mod imagecircle_handler;
-pub mod line_handler;
-pub mod output_handler;
-pub mod qrcode_handler;
-pub mod rectangle_handler;
-pub mod text_handler;
+mod background_handler;
+mod canvas_handler;
+mod imagecircle_handler;
+mod line_handler;
+mod output_handler;
+mod qrcode_handler;
+mod rectangle_handler;
+mod text_handler;
+
+pub use background_handler::BackgroundHandler;
+pub use background_handler::BackgroundRemoteHandler;
+pub use canvas_handler::CanvasHandler;
+pub use canvas_handler::IHandler;
+pub use imagecircle_handler::ImageCircleHandler;
+pub use imagecircle_handler::ImageRemoteCircleHandler;
+pub use line_handler::LineHandler;
+pub use output_handler::IOutput;
+pub use output_handler::OutputLocal;
+pub use qrcode_handler::QrcodeHandler;
+pub use rectangle_handler::RectangleHandler;
+pub use text_handler::TextHandler;
 
 mod tests {
 

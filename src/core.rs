@@ -1,4 +1,12 @@
-pub mod core;
+mod core;
+
+pub use core::get_remote_resource;
+pub use core::image_to_circle;
+pub use core::load_font;
+pub use core::meger_image_to_buffer;
+pub use core::new_canvas;
+pub use core::resize_image;
+pub use core::text_to_image;
 
 #[cfg(test)]
 mod tests {
